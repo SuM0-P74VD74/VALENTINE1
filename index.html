@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Queen ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+overflow:hidden;
+background:black;
+color:white;
+text-align:center;
+}
+
+/* NIGHT SKY */
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:radial-gradient(circle at top,#1a0026,#000);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+#moon{
+width:120px;
+height:120px;
+background:white;
+border-radius:50%;
+box-shadow:0 0 40px white;
+margin-bottom:20px;
+animation:glow 3s infinite alternate;
+}
+@keyframes glow{
+from{box-shadow:0 0 20px white;}
+to{box-shadow:0 0 60px #ff69b4;}
+}
+
+#countdown{
+font-size:2rem;
+margin-top:10px;
+}
+
+#enterBtn{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:#ff1493;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* MAIN */
+#main{
+display:none;
+overflow-y:auto;
+height:100vh;
+background:linear-gradient(-45deg,#ff9a9e,#fecfef,#fad0c4,#ffc3a0);
+background-size:400% 400%;
+animation:bg 15s infinite ease;
+}
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.title{
+font-family:'Great Vibes',cursive;
+font-size:3rem;
+margin-top:30px;
+text-shadow:0 0 20px #ff1493;
+}
+
+.from{
+font-size:1.2rem;
+margin-top:10px;
+opacity:0;
+animation:fadeIn 3s forwards 2s;
+}
+@keyframes fadeIn{
+to{opacity:1;}
+}
+
+/* GIFT */
+.gift{
+margin:30px auto;
+width:120px;
+height:120px;
+background:#ff1493;
+border-radius:10px;
+position:relative;
+cursor:pointer;
+animation:bounce 2s infinite;
+}
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+/* PHOTO WALL */
+.photo-wall{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:20px;
+}
+.polaroid{
+background:white;
+padding:10px;
+border-radius:10px;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
+transition:0.5s;
+}
+.polaroid img{
+width:180px;
+height:220px;
+object-fit:cover;
+border-radius:5px;
+}
+.polaroid:hover{
+transform:scale(1.1);
+}
+
+/* LETTER */
+#letter{
+display:none;
+background:white;
+color:#ff1493;
+max-width:650px;
+margin:30px auto;
+padding:30px;
+border-radius:20px;
+animation:open 1s forwards;
+}
+@keyframes open{
+from{transform:scaleY(0);}
+to{transform:scaleY(1);}
+}
+
+/* PETALS */
+.petal{
+position:fixed;
+top:-10px;
+font-size:20px;
+color:#ff1493;
+animation:fall linear infinite;
+}
+@keyframes fall{
+to{transform:translateY(100vh);}
+}
+
+/* SPARKLE TRAIL */
+.sparkle{
+position:fixed;
+width:8px;
+height:8px;
+background:white;
+border-radius:50%;
+pointer-events:none;
+animation:fade 1s forwards;
+}
+@keyframes fade{
+to{opacity:0;transform:scale(2);}
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+<div id="moon"></div>
+<h1 style="font-family:'Great Vibes',cursive;">For My Queen 👑</h1>
+<div id="countdown">3</div>
+<button id="enterBtn" style="display:none;">Enter ❤️</button>
+</div>
+
+<div id="main">
+<div class="title">Happy Valentine’s Day Mom 💖</div>
+<div class="from">From Yuvraj ❤️</div>
+
+<div class="gift" onclick="openSurprise()"></div>
+
+<div class="photo-wall">
+<div class="polaroid"><img src="img1.jpeg"></div>
+<div class="polaroid"><img src="img2.jpeg"></div>
+<div class="polaroid"><img src="img3.jpeg"></div>
+<div class="polaroid"><img src="img4.jpeg"></div>
+<div class="polaroid"><img src="img5.jpeg"></div>
+</div>
+
+<div id="letter">
+माँ ❤️  
+आप मेरी ताकत हैं, मेरी दुनिया हैं, मेरी सबसे बड़ी दुआ हैं।  
+आपके बिना मैं कुछ भी नहीं।  
+आपके हर त्याग, हर प्यार, हर दुआ ने मुझे बनाया है।  
+I love you forever Mom 💖  
+
+</div>
+</div>
+
+<audio id="music" src="music.mp3"></audio>
+
+<script>
+// COUNTDOWN
+let count=3;
+let countdownEl=document.getElementById("countdown");
+let interval=setInterval(()=>{
+count--;
+countdownEl.innerText=count;
+if(count==0){
+clearInterval(interval);
+countdownEl.style.display="none";
+document.getElementById("enterBtn").style.display="block";
+}
+},1000);
+
+document.getElementById("enterBtn").onclick=function(){
+document.getElementById("intro").style.display="none";
+document.getElementById("main").style.display="block";
+}
+
+// SURPRISE
+function openSurprise(){
+document.getElementById("letter").style.display="block";
+document.getElementById("music").play();
+launchPetals();
+}
+
+// PETAL RAIN
+function launchPetals(){
+for(let i=0;i<50;i++){
+let p=document.createElement("div");
+p.classList.add("petal");
+p.innerHTML="🌸";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=3+Math.random()*5+"s";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),8000);
+}
+}
+
+// SPARKLE TRAIL
+document.addEventListener("mousemove",e=>{
+let s=document.createElement("div");
+s.classList.add("sparkle");
+s.style.left=e.pageX+"px";
+s.style.top=e.pageY+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),1000);
+});
+</script>
+
+</body>
+</html>
